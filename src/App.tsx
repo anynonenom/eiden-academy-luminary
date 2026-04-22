@@ -10,6 +10,7 @@ import { Layout } from "@/components/layout/Layout";
 import Index from "./pages/Index.tsx";
 import Mice from "./pages/Mice.tsx";
 import Formations from "./pages/Formations.tsx";
+import FormationDetail from "./pages/FormationDetail.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/mice" element={<Mice />} />
             <Route path="/formations" element={<Formations />} />
+            <Route path="/formations/:slug" element={<FormationDetail />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />

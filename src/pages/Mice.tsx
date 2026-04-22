@@ -130,26 +130,90 @@ const Mice = () => {
         </Marquee>
       </section>
 
-      {/* 07 ENQUIRY FORM */}
+      {/* 07 BOOKING + CONTACT FORM */}
       <section className="relative py-32 container-fluid">
         <BigNumber n="07" />
-        <div className="grid lg:grid-cols-2 gap-16">
-          <div>
-            <SectionLabel n="— Enquiry 07" label="Begin a brief" />
-            <SplitReveal text="Tell us what you're convening." className="mt-6 h-display text-[clamp(1.75rem,4vw,4rem)] text-deep" />
-            <p className="mt-6 text-deep/70 max-w-md">Share the broad strokes. We'll respond within 24 hours with a curated proposal.</p>
-          </div>
-          <Reveal delay={0.2}>
-            <form className="space-y-8" onSubmit={e=>e.preventDefault()}>
-              {[["Name"],["Organisation"],["Email"],["Date · location"],["Brief"]].map(([l],i)=>(
-                <div key={l} className="border-b border-deep/30 pb-2 focus-within:border-gold transition-colors">
-                  <label className="block font-display text-[10px] uppercase tracking-[0.3em] text-teal mb-2">0{i+1} · {l}</label>
-                  {l==="Brief"
-                    ? <textarea rows={3} className="w-full bg-transparent outline-none font-display text-lg" />
-                    : <input className="w-full bg-transparent outline-none font-display text-lg" />}
+        <div className="grid lg:grid-cols-12 gap-12">
+          <div className="lg:col-span-5">
+            <SectionLabel n="— Booking 07" label="Reserve · brief · contact" />
+            <SplitReveal text="Book the unforgettable." className="mt-6 h-display text-[clamp(1.75rem,4vw,4rem)] text-deep" />
+            <p className="mt-6 text-deep/70 max-w-md">Share the broad strokes of your event. Our atelier responds within 24 hours with a curated proposal, venue options, and a tailored quote.</p>
+            <div className="mt-10 space-y-4">
+              {[["Email","hello@eiden-academy.com"],["Phone","+212 522 000 000"],["Studio","Casablanca · Marrakech · Paris"]].map(([k,v])=>(
+                <div key={k} className="border-t border-deep/15 pt-3">
+                  <div className="font-display text-[10px] uppercase tracking-[0.3em] text-teal">{k}</div>
+                  <div className="font-display text-deep">{v}</div>
                 </div>
               ))}
-              <MagneticButton cursor="SEND" className="bg-deep text-cream rounded-full">Send enquiry →</MagneticButton>
+            </div>
+          </div>
+          <Reveal delay={0.2}>
+            <form className="lg:col-span-7 space-y-6 bg-cream p-8 md:p-12 border border-deep/10" onSubmit={e=>{e.preventDefault(); alert("Enquiry sent — our atelier will respond within 24h.");}}>
+              <div className="grid md:grid-cols-2 gap-6">
+                <label className="block">
+                  <span className="font-display text-[10px] uppercase tracking-[0.3em] text-teal">01 · Full name</span>
+                  <input required className="mt-2 w-full bg-transparent border-b border-deep/30 focus:border-gold outline-none py-2 font-display text-lg transition-colors" />
+                </label>
+                <label className="block">
+                  <span className="font-display text-[10px] uppercase tracking-[0.3em] text-teal">02 · Organisation</span>
+                  <input className="mt-2 w-full bg-transparent border-b border-deep/30 focus:border-gold outline-none py-2 font-display text-lg transition-colors" />
+                </label>
+                <label className="block">
+                  <span className="font-display text-[10px] uppercase tracking-[0.3em] text-teal">03 · Email</span>
+                  <input required type="email" className="mt-2 w-full bg-transparent border-b border-deep/30 focus:border-gold outline-none py-2 font-display text-lg transition-colors" />
+                </label>
+                <label className="block">
+                  <span className="font-display text-[10px] uppercase tracking-[0.3em] text-teal">04 · Phone</span>
+                  <input type="tel" className="mt-2 w-full bg-transparent border-b border-deep/30 focus:border-gold outline-none py-2 font-display text-lg transition-colors" />
+                </label>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <label className="block">
+                  <span className="font-display text-[10px] uppercase tracking-[0.3em] text-teal">05 · Event type</span>
+                  <select required className="mt-2 w-full bg-transparent border-b border-deep/30 focus:border-gold outline-none py-2 font-display text-lg">
+                    {["Meeting","Incentive","Conference","Event · Gala","Bespoke"].map(o=><option key={o}>{o}</option>)}
+                  </select>
+                </label>
+                <label className="block">
+                  <span className="font-display text-[10px] uppercase tracking-[0.3em] text-teal">06 · Preferred venue</span>
+                  <select className="mt-2 w-full bg-transparent border-b border-deep/30 focus:border-gold outline-none py-2 font-display text-lg">
+                    {["Atrium","Salon Vert","Bibliothèque","Terrasse","Studio","Open to suggestions"].map(o=><option key={o}>{o}</option>)}
+                  </select>
+                </label>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                <label className="block">
+                  <span className="font-display text-[10px] uppercase tracking-[0.3em] text-teal">07 · Date</span>
+                  <input type="date" className="mt-2 w-full bg-transparent border-b border-deep/30 focus:border-gold outline-none py-2 font-display text-lg" />
+                </label>
+                <label className="block">
+                  <span className="font-display text-[10px] uppercase tracking-[0.3em] text-teal">08 · Attendees</span>
+                  <input type="number" min={1} placeholder="120" className="mt-2 w-full bg-transparent border-b border-deep/30 focus:border-gold outline-none py-2 font-display text-lg" />
+                </label>
+                <label className="block">
+                  <span className="font-display text-[10px] uppercase tracking-[0.3em] text-teal">09 · Budget</span>
+                  <select className="mt-2 w-full bg-transparent border-b border-deep/30 focus:border-gold outline-none py-2 font-display text-lg">
+                    {["< €10k","€10k–25k","€25k–60k","€60k–150k","€150k +"].map(o=><option key={o}>{o}</option>)}
+                  </select>
+                </label>
+              </div>
+
+              <label className="block">
+                <span className="font-display text-[10px] uppercase tracking-[0.3em] text-teal">10 · The brief</span>
+                <textarea rows={4} placeholder="Tell us what you're convening — tone, audience, ambition." className="mt-2 w-full bg-transparent border-b border-deep/30 focus:border-gold outline-none py-2 font-display text-base resize-none transition-colors" />
+              </label>
+
+              <label className="flex items-start gap-3 pt-2">
+                <input type="checkbox" className="mt-1 accent-deep" required />
+                <span className="text-xs text-deep/70 font-display">I agree to be contacted by Eiden Academy regarding this enquiry.</span>
+              </label>
+
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-4">
+                <span className="font-italic-serif text-gold">We respond within 24 hours.</span>
+                <MagneticButton cursor="SEND" className="bg-deep text-cream rounded-full">Send booking enquiry →</MagneticButton>
+              </div>
             </form>
           </Reveal>
         </div>
