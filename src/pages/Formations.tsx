@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Reveal, SplitReveal } from "@/components/motion/Reveal";
 import { MagneticButton } from "@/components/motion/MagneticButton";
@@ -12,11 +13,11 @@ import p2 from "@/assets/portrait-2.jpg";
 import p3 from "@/assets/portrait-3.jpg";
 
 const programmes = [
-  { t: "Leadership", tag: "Executive", dur: "12 wks", desc: "Architect of judgement.", img: formationImg },
-  { t: "Strategy",   tag: "Advanced",  dur: "10 wks", desc: "The disciplined long view.", img: hero },
-  { t: "Finance",    tag: "Mastery",   dur: "14 wks", desc: "Capital with conscience.", img: about },
-  { t: "Marketing",  tag: "Editorial", dur: "8 wks",  desc: "Build cult, not noise.", img: formationImg },
-  { t: "Technology", tag: "Founder",   dur: "12 wks", desc: "Engineer the inevitable.", img: hero },
+  { slug: "leadership", t: "Leadership", tag: "Executive", dur: "12 wks", desc: "Architect of judgement.", img: formationImg },
+  { slug: "strategy",   t: "Strategy",   tag: "Advanced",  dur: "10 wks", desc: "The disciplined long view.", img: hero },
+  { slug: "finance",    t: "Finance",    tag: "Mastery",   dur: "14 wks", desc: "Capital with conscience.", img: about },
+  { slug: "marketing",  t: "Marketing",  tag: "Editorial", dur: "8 wks",  desc: "Build cult, not noise.", img: formationImg },
+  { slug: "technology", t: "Technology", tag: "Founder",   dur: "12 wks", desc: "Engineer the inevitable.", img: hero },
 ];
 
 const filters = ["All","Leadership","Strategy","Finance","Marketing","Tech"];
@@ -73,7 +74,7 @@ const Formations = () => {
             .filter(p => active==="All" || p.t.toLowerCase().startsWith(active.toLowerCase().slice(0,4)))
             .map((p,i)=>(
             <Reveal key={p.t} delay={i*0.05}>
-              <div className="bg-cream group hover:bg-deep hover:text-cream transition-colors duration-500 cursor-pointer" data-cursor="OPEN">
+              <Link to={`/formations/${p.slug}`} className="block bg-cream group hover:bg-deep hover:text-cream transition-colors duration-500 cursor-pointer" data-cursor="OPEN">
                 <div className="grid grid-cols-12 items-center px-4 md:px-8 py-8 gap-4">
                   <div className="col-span-1 font-display text-[10px] uppercase tracking-[0.3em] text-gold">0{i+1}</div>
                   <h3 className="col-span-12 md:col-span-4 font-display text-4xl md:text-6xl font-bold tracking-tight">{p.t}</h3>
@@ -84,7 +85,7 @@ const Formations = () => {
                 <div className="overflow-hidden h-0 group-hover:h-64 transition-all duration-700">
                   <img src={p.img} alt={p.t} loading="lazy" className="w-full h-64 object-cover" />
                 </div>
-              </div>
+              </Link>
             </Reveal>
           ))}
         </div>
